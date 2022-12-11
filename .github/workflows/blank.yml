@@ -1,0 +1,39 @@
+on: push
+
+jobs:
+    convert_d2l_zh_to_epub_via_pandoc:
+        runs-on: ubuntu-18.04
+        name: Convert d2l-zh markdown files to epub
+
+        steps:
+        - name: Checkout Project d2l-zh
+          uses: actions/checkout@master
+          with:
+            repository: luxontw/d2l-zh
+            token: ${{ secrets.ACTIONS_TOKEN }}
+            path: ./d2l-zh
+
+        - name: Checkout Project d2l-zh-epub
+          uses: actions/checkout@master
+          with: 
+            path: ./d2l-zh-epub
+
+        - name: Copy/Create file
+          run: |
+            FILE=./d2l-zh/
+            if [ -f "$FILE" ]; then
+              echo "Copying $FILE"
+              cp -R ./d2l-zh/file ./d2l-zh-epub
+            else 
+              echo "Creating $FILE"
+              touch ./d2l-zh-epub/file
+            fi
+
+        - name: Push Project B
+          run: |
+            cd ./projectB
+            git add .
+            git config user.name github-actions
+            git config user.email github-actions@github.com
+            git commit -am "File Replicated from Project A"
+            git push
