@@ -10,7 +10,6 @@ jobs:
           uses: actions/checkout@master
           with:
             repository: luxontw/d2l-zh
-            token: ${{ secrets.ACTIONS_TOKEN }}
             path: ./d2l-zh
 
         - name: Checkout Project d2l-zh-epub
