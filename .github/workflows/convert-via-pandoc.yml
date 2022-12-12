@@ -22,17 +22,17 @@ jobs:
             FILE=./d2l-zh/
             if [ -f "$FILE" ]; then
               echo "Copying $FILE"
-              cp -R ./d2l-zh/file ./d2l-zh-epub
-            else 
+              cp -R ./d2l-zh/config.ini ./d2l-zh-epub
+            else
               echo "Creating $FILE"
-              touch ./d2l-zh-epub/file
+              touch ./d2l-zh-epub/config.ini
             fi
 
-        - name: Push Project B
+        - name: Push Project d2l-zh-epub
           run: |
             cd ./d2l-zh-epub
             git add .
             git config user.name github-actions
             git config user.email github-actions@github.com
-            git commit -am "File Replicated from Project A"
+            git commit -am "File Replicated from Project d2l-zh"
             git push
