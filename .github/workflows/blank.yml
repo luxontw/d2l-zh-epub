@@ -30,7 +30,7 @@ jobs:
 
         - name: Push Project B
           run: |
-            cd ./projectB
+            cd ./d2l-zh-epub
             git add .
             git config user.name github-actions
             git config user.email github-actions@github.com
